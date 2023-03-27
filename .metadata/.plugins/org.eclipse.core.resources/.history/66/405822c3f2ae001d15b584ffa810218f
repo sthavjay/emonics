@@ -1,0 +1,37 @@
+package emonics.hr.ui;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import emonics.hr.model.Employee;
+
+/**
+ * Servlet implementation class EmpView
+ */
+@WebServlet("/empview")
+public class EmpView extends HttpServlet {
+	
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+	}
+
+	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		  response.setContentType("text/html");
+		  PrintWriter pw=response.getWriter();
+		  Employee e=(Employee) request.getAttribute("emp");
+		   pw.println("<html> <body>");
+		   pw.println(""); 
+		   pw.println("<p><b>Id:</b> &nbsp;&nbsp;&nbsp;&nbsp; <input type='text' name='id' value="+e.getId()+" /> </p>");
+		   pw.println("<p><b>Name:</b><input type='text' name='name' value="+e.getName()+" /> </p>");
+		   pw.println("</body> </html>");
+		   pw.close();
+	}
+
+}

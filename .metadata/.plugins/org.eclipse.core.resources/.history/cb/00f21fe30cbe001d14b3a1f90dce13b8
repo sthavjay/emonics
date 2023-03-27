@@ -1,0 +1,5 @@
+package emonics.hrm.dao;
+
+public interface InsuredEmployeeRepo {
+
+}

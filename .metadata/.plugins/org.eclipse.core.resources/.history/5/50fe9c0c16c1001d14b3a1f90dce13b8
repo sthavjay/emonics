@@ -1,0 +1,6 @@
+package com.example.entities;
+
+public class Clothes {
+	private String colletions;
+
+}

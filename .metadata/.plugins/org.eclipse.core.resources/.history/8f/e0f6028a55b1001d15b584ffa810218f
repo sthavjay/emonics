@@ -1,0 +1,53 @@
+package emonics.hr.web;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import emonics.hr.dao.DbConnectionFactory;
+import emonics.hr.dao.EmployeeDao;
+import emonics.hr.model.Employee;
+
+/**
+ * Servlet implementation class EmployeeController
+ */
+@WebServlet("/EmployeeController")
+public class EmployeeController extends HttpServlet {
+	private EmployeeDao dao;
+	
+	public void init() {
+		dao=DbConnectionFactory.get();
+	}
+	
+   protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	 	
+	   String v=request.getParameter("b1");
+	 
+	   	switch(v) {
+	   		case "FindById":
+	   			String id=request.getParameter("id");
+	   			Employee e=dao.findById(id);
+	   			request.setAttribute("emp", e);
+	   			request.getRequestDispatcher("empview.jsp").forward(request, response);
+	   			break;
+	   		case "Save":
+	   			
+	   			break;
+	   		case "Update":
+	   			
+	   			break;
+	   		case "Delete":
+	   			
+	   			break;
+	   		
+	   	}
+		
+   }
+   
+   
+}

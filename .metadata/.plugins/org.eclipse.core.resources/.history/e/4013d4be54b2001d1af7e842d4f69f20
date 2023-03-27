@@ -1,0 +1,15 @@
+package emonics.hr.dao;
+
+import java.util.List;
+
+import emonics.hr.model.Employee;
+
+public interface EmployeeDao {
+		List<Employee> findAll(); // interface methods by default
+		Employee findById(int id);
+		boolean save(Employee e);
+		boolean delete(int id);
+		// add operation to delete record
+		
+
+}

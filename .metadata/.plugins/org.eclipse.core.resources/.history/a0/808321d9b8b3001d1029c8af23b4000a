@@ -1,0 +1,106 @@
+package emonics.hr.dao;
+
+import java.sql.SQLException;
+import java.util.List;
+
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
+import org.hibernate.query.Query;
+
+import emonics.hr.model.Department;
+import emonics.hr.model.Employee;
+
+public class EmployeeJpaRepo implements EmployeeDao {
+
+	private SessionFactory getConnection() throws SQLException {
+		SessionFactory f=new Configuration().configure("/emonics/hr/config/hibernate.cfg.xml").buildSessionFactory();
+		return f;
+	}
+	
+	@Override
+	public List<Employee> findAll() {
+		List<Employee> empList=null;
+		try(SessionFactory f=getConnection();
+				Session s=f.openSession())
+		{
+					Query<Employee> q=s.createQuery("select e from Employee e", Employee.class);
+					//Query<Employee> q=s.createNamedQuery("employee.findall", Employee.class);
+//			CriteriaBuilder cb=s.getCriteriaBuilder();
+//			CriteriaQuery<Employee> cr=cb.createQuery(Employee.class);
+//			
+//			Root<Employee> root=cr.from(Employee.class);
+//			cr.select(root);
+//			Query<Employee> q=s.createQuery(cr);
+			
+			//Query<Employee> q=s.createNamedQuery("employee.findbyDept", Employee.class);
+			//q.setInteger("did", 102);
+			empList=q.getResultList();
+		}catch(SQLException ex) {
+				ex.printStackTrace();
+		}
+			
+		return empList;
+	}
+
+	@Override
+	public Employee findById(int id) {
+		Employee e=new Employee();
+		try(SessionFactory f=getConnection();
+		Session s=f.openSession())
+		{
+			e=s.get(Employee.class, id);
+				
+		}catch(SQLException s) {
+			String message=s.getMessage();
+			System.out.println(message);
+		}
+		
+		return e;
+	}
+
+	@Override
+	public boolean save(Employee e) {
+		boolean success=false;
+		try(SessionFactory f=getConnection();
+				Session s=f.openSession())
+				{
+					s.getTransaction().begin();	
+						s.save(e);
+					s.getTransaction().commit();
+					success=true;
+				}catch(SQLException s1) {
+					//s.getTransaction().rollback();
+					String message=s1.getMessage();
+					System.out.println(message);
+				}
+				
+		
+		return success;
+	}
+
+	@Override
+	public void callProc() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public List<Department> findAllDepartment() {
+		List<Department> deptList=null;
+		try(SessionFactory f=getConnection();
+				Session s=f.openSession())
+		{
+			Query<Department> q=s.createQuery("select d from Department d", Department.class);
+			deptList=q.getResultList();
+		}catch(Exception ex) {
+			ex.printStackTrace();
+		}
+		return deptList;
+	}
+
+}

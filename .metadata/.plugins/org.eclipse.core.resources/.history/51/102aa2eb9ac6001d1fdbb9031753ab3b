@@ -1,0 +1,12 @@
+package com.example.Repository;
+
+import org.springframework.data.jpa.repository.cdi.JpaRepositoryExtension;
+import org.springframework.stereotype.Repository;
+import com.example.entities.Clothes;
+
+
+@Repository
+public class ClothesRepository extends JpaRepositoryExtension<Clothes,Integer>{
+
+}
+

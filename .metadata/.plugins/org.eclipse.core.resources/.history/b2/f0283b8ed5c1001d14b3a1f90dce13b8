@@ -1,0 +1,5 @@
+package myshop.rmb.service;
+
+public class ProductCategoryService {
+
+}

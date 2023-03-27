@@ -1,0 +1,42 @@
+package com.example.entities;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import lombok.Data;
+
+@Data
+@Entity
+@Table(name = "ITEM")
+public class Items {
+	@Id
+	private  int item_id;
+	private float price;
+	private int quantity;
+	private double TotalPrice;
+	
+	
+	
+	
+	
+	public Items(int item_id, float price, int quantity, double totalPrice) {
+		super();
+		this.item_id = item_id;
+		this.price = price;
+		this.quantity = quantity;
+		TotalPrice = totalPrice;
+	}
+
+
+
+
+
+	public Items() {
+		super();
+	}
+	
+	
+	
+}
+

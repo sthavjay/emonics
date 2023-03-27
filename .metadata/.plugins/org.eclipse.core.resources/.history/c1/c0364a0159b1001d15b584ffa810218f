@@ -1,0 +1,114 @@
+package emonics.hr.dao;
+
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.sql.Types;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.ejb.LocalBean;
+import javax.ejb.Stateless;
+
+import emonics.hr.model.Employee;
+
+@Stateless @LocalBean
+public class EmployeeRepo {
+	
+	public Connection getConnection() throws SQLException {
+		String jurl="jdbc:mysql://localhost:3306/batch4";
+		String user="root";
+		String pass="admin#123";
+		Connection con=DriverManager.getConnection(jurl,user,pass);
+		return con;
+	}
+
+	public List<Employee> findAll() {
+		
+		List<Employee> empList=new ArrayList<>();
+		try(Connection con=getConnection();
+			Statement st=con.createStatement();
+			ResultSet rs=st.executeQuery("select * from employee")){
+			while(rs.next()) {
+				int id=rs.getInt("EMP_ID");
+				String name=rs.getString("EMP_NAME");
+				double sal=rs.getDouble("SALARY");
+				int did=rs.getInt("DEPT_ID");
+				int mgrId=rs.getInt("MGR_ID");
+				empList.add(new Employee(id, name, sal, did, mgrId));
+			}
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return empList;
+	}
+
+
+	public Employee findById(int id) {
+		Employee emp=new Employee();
+		try(Connection con=getConnection();
+			PreparedStatement st=con.prepareStatement("select * from employee where emp_id=?")){
+			//String query="select * from employee where emp_id="+id; // SQL Injection
+			st.setInt(1, id);
+			ResultSet rs=st.executeQuery();
+			if(rs.next()) {
+				emp.setId(rs.getInt("EMP_ID"));
+				emp.setName(rs.getString("EMP_NAME"));
+				emp.setSalary(rs.getDouble("SALARY"));
+				emp.setDeptId(rs.getInt("DEPT_ID"));
+				emp.setMgrId(rs.getInt("MGR_ID"));
+			}
+						
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return emp;
+		
+	}
+	
+	public boolean save(Employee e) {
+		boolean r=false;
+		// write program to insert records
+		try(Connection con = getConnection()){
+			//String sql="insert into employee values("+e.getId()+",'"+e.getName()+"',"+ e.getSalary()+","+e.getDeptId()+","+e.getMgrId()+")";
+			    
+			String sql="insert into employee values(?,?,?,?,?)";
+		    PreparedStatement st = con.prepareStatement(sql);
+			st.setInt(1, e.getId());
+			st.setString(2, e.getName());
+			st.setDouble(3, e.getSalary());
+			st.setInt(4, e.getDeptId());
+			st.setInt(5, e.getMgrId());
+				
+			//System.out.println(sql);
+			int n = st.executeUpdate();
+			if(n>0) { r=true; }
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		}
+		return r;
+	}
+	
+	public void callProc() {
+		try(Connection con = getConnection()){
+				CallableStatement ct=con.prepareCall("{call getSalaryByDept2(?,?)}");
+				ct.setInt(1, 102);
+				ct.registerOutParameter(2, Types.DOUBLE);
+				ct.execute();
+				System.out.println(ct.getDouble(2));
+		}catch (SQLException e1) {
+			e1.printStackTrace();
+		}
+		
+	}
+}

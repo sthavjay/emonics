@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+		<h1 align="center"> Employee Management System</h1>
+		
+		<a href="#"> Show All Employee</a> &nbsp;&nbsp;&nbsp;&nbsp;
+		<a href="empview.jsp"> Employee Management</a>
+</body>
+</html>

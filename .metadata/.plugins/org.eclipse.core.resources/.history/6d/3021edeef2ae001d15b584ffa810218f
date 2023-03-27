@@ -1,0 +1,110 @@
+package emonics.hr.dao;
+
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.sql.Types;
+import java.util.ArrayList;
+import java.util.List;
+
+import emonics.hr.model.Employee;
+
+public class EmployeeRepo implements EmployeeDao {
+	
+	public Connection getConnection() throws SQLException {
+		String jurl="jdbc:mysql://localhost:3306/employee";
+		String user="root";
+		String pass="Trishna@123";
+		Connection con=DriverManager.getConnection(jurl,user,pass);
+		return con;
+	}
+
+	@Override
+	public List<Employee> findAll() {
+		
+		List<Employee> empList=new ArrayList<>();
+		try(Connection con=getConnection();
+			Statement st=con.createStatement();
+			ResultSet rs=st.executeQuery("select * from employee")){
+			while(rs.next()) {
+				int id=rs.getInt("id");
+				String firstName=rs.getString("fisrtname");
+				String lastName=rs.getString("lastname");
+				double sal=rs.getDouble("salary");
+				empList.add(new Employee(id, firstName,lastName, sal));
+			}
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return empList;
+	}
+
+	@Override
+	public Employee findById(String id) {
+		Employee emp=new Employee();
+		try(Connection con=getConnection();
+			PreparedStatement st=con.prepareStatement("select * from employee where id=?")){
+			//String query="select * from employee where emp_id="+id; // SQL Injection
+			st.setString(1, id);
+			ResultSet rs=st.executeQuery();
+			if(rs.next()) {
+				emp.setId(rs.getInt("ID"));
+				emp.setFname(rs.getString("FIRSTNAME"));
+				emp.setLname(rs.getString("LASTNAME"));
+				emp.setSalary(rs.getDouble("SALARY"));
+
+			}
+						
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return emp;
+		
+	}
+	
+	public boolean save(Employee e) {
+		boolean r=false;
+		// write program to insert records
+		try(Connection con = getConnection()){
+			//String sql="insert into employee values("+e.getId()+",'"+e.getName()+"',"+ e.getSalary()+","+e.getDeptId()+","+e.getMgrId()+")";
+			    
+			String sql="insert into employee values(?,?,?,?,?)";
+		    PreparedStatement st = con.prepareStatement(sql);
+			st.setInt(1, e.getId());
+			st.setString(2, e.getName());
+			st.setDouble(3, e.getSalary());
+			st.setInt(4, e.getDeptId());
+			st.setInt(5, e.getMgrId());
+				
+			//System.out.println(sql);
+			int n = st.executeUpdate();
+			if(n>0) { r=true; }
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		}
+		return r;
+	}
+	
+	public void callProc() {
+		try(Connection con = getConnection()){
+				CallableStatement ct=con.prepareCall("{call getSalaryByDept2(?,?)}");
+				ct.setInt(1, 102);
+				ct.registerOutParameter(2, Types.DOUBLE);
+				ct.execute();
+				System.out.println(ct.getDouble(2));
+		}catch (SQLException e1) {
+			e1.printStackTrace();
+		}
+		
+	}
+}

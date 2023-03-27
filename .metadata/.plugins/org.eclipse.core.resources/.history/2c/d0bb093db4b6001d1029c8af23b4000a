@@ -1,0 +1,11 @@
+package com.example;
+public class Employee {
+	private int id;
+	private String firstName;
+	private String lastName;
+	private float salary;
+	public Employee() {}
+	
+	
+	
+}

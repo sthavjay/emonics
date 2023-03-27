@@ -1,0 +1,110 @@
+package emonics.hr.dao;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+
+import emonics.hr.model.Employee;
+
+public class EmployeeRepo implements EmployeeDao {
+	
+	public Connection getConnection() throws SQLException {
+		String jurl="jdbc:mysql://localhost:3306/employee";
+		String user="root";
+		String pass="Trishna@123";
+		Connection con=DriverManager.getConnection(jurl,user,pass);
+		return con;
+	}
+
+	@Override
+	public List<Employee> findAll() {
+		
+		List<Employee> empList=new ArrayList<>();
+		try(Connection con=getConnection();
+			Statement st=con.createStatement();
+			ResultSet rs=st.executeQuery("select * from employee")){
+			while(rs.next()) {
+				int id=rs.getInt("id");
+				String firstName=rs.getString("firstname");
+				String lastName=rs.getString("lastname");
+				double sal=rs.getDouble("SALARY");
+				empList.add(new Employee(id, firstName,lastName,sal));
+			}
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return empList;
+	}
+
+	@Override
+	public Employee findById(int id) {
+		Employee emp=new Employee();
+		try(Connection con=getConnection();
+			Statement st=con.createStatement();
+			ResultSet rs=st.executeQuery("select * from employee where emp_id="+id)){
+			if(rs.next()) {
+				emp.setId(rs.getInt("id"));
+				emp.setFirstName(rs.getString("firstname"));
+				emp.setLastName(rs.getString("lastname"));
+				emp.setSalary(rs.getDouble("salary"));
+			
+			}
+						
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return emp;
+		
+	}
+
+	@Override
+	public boolean save(Employee e) {
+		String qry = "insert into employee values(?,?,?,?)";
+		PreparedStatement ps;
+		try (Connection con = getConnection();){
+			ps = con.prepareStatement(qry);
+			ps.setInt(1, e.getId());
+			ps.setString(2, e.getFirstName());
+			ps.setString(3, e.getLastName());
+			ps.setDouble(4, e.getSalary());
+			ps.executeUpdate();
+			
+			}
+			
+	 catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}		// write program to insert records
+		return true;
+	}
+
+	@Override
+	public boolean delete(Employee e) {
+		String sql = "delete from employee where id = ?";
+		PreparedStatement ps;
+		try(Connection con = getConnection();){
+			ps.setInt(1, e.getId());
+			ps.setString(2, e.getFirstName());
+			ps.setString(3, e.getLastName());
+			ps.setDouble(4, e.getSalary());
+			ps.executeUpdate();
+			
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		return true;
+	}
+
+}

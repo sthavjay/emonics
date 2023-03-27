@@ -1,0 +1,22 @@
+package com.example;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ApplicationContext;
+
+import com.example.entities.Employee;
+import com.example.hr.EmployeeRepo;
+
+@SpringBootApplication
+public class EmployeeSpringBootApplication {
+
+	public static void main(String[] args) {
+		ApplicationContext ctx = SpringApplication.run(EmployeeSpringBootApplication.class, args);
+		EmployeeRepo e1 = (EmployeeRepo) ctx.getBean(Employee.class);
+		e1.findById(3);
+		System.out.println(e1);
+		
+		
+	}
+
+}

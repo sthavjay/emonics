@@ -1,0 +1,51 @@
+package com.example.entities;
+
+@Data
+@Entity
+@Table(name = "ITEM")
+public class Items {
+	@Id
+	private  int item_id;
+	private float price;
+	private int quantity;
+	private double TotalPrice;
+	
+
+
+
+	public float getPrice() {
+		return price;
+	}
+
+
+
+	public void setPrice(float price) {
+		this.price = price;
+	}
+
+
+
+	public int getQuantity() {
+		return quantity;
+	}
+
+
+
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
+
+
+
+	public double getTotalPrice() {
+		return TotalPrice;
+	}
+
+
+
+	public void setTotalPrice(float totalPrice) {
+		TotalPrice = totalPrice - (0.08*totalPrice);
+	}
+	
+	
+}

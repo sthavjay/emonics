@@ -1,0 +1,16 @@
+package emonics.hrm.util;
+
+import lombok.Getter;
+import lombok.Setter;
+
+@Setter @Getter
+public class Employee {  // the reason for another employee class is match the json structure where we can have date of joing and instype as well.
+							// in this employee class, we dont have Department dept reference variable from department class.
+	private int id;
+	private String name;
+	private double salary;
+	private String dateOfJoining;
+	private Integer mgrId;
+	private int deptId;
+	private String insType;
+}

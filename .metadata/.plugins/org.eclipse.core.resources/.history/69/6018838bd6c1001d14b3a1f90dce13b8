@@ -1,0 +1,33 @@
+package myshop.rmb.service;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import myshop.rmb.dao.ProductCategoryRepo;
+import myshop.rmb.dao.ProductRepo;
+import myshop.rmb.entity.Product;
+import myshop.rmb.entity.ProductCategory;
+
+public class ProductCategoryService {
+
+	
+	@Autowired
+	private ProductCategoryRepo pcr;
+	
+	public ProductCategory find(long id) {
+		Product p=null;
+		Optional<Product> op=pcr.findById(id);
+		if(op.isPresent()) {
+			p=op.get();
+		}
+		return p;
+	}
+	
+	public List<Product> find(ProductCategory pc) {
+		//---enhance this logic to ensure that it returns only 20 records
+		
+		return pcr.findById(pc);
+	}
+}

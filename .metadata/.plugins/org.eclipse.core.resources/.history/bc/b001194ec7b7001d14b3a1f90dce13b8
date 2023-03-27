@@ -1,0 +1,26 @@
+package com.example.demo;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.context.support.AbstractApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import com.example.pojos.Employee;
+import com.example.pojos.Manager;
+
+@SpringBootApplication
+public class FirstSpringApplication {
+
+	public static void main(String[] args) {
+		ConfigurableApplicationContext context = SpringApplication.run(Employee.class, args);
+			com.example.hr.Employee e = new Employee();
+	     Employee e1=(Employee) context.getBean(Employee.Class);
+//	     Employee e2=(Employee) context.getBean("emp");
+//	     Manager m1=(Manager) context.getBean("mgr");
+	     e1.setId(1);
+	     e1.setFirstName("Bijaya");
+	     System.out.println(e1);
+	}
+
+}

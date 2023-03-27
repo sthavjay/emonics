@@ -1,0 +1,87 @@
+package emonics.hrapp.models.beans;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
+
+import org.hibernate.annotations.Proxy;
+
+@Entity @Table(name="EMPLOYEE")
+@NamedQueries(
+		{
+			@NamedQuery(name="findAllEmployee", query="select e from Employee e"),
+			@NamedQuery(name="findAllEmployeeByDept", query="select e from Employee e where e.deptId=:dpt")
+		}
+)
+@Proxy(lazy=false)
+public class Employee{
+	@Id @Column(name="EMP_ID")
+	private int id;
+	@Column(name="EMP_NAME")
+	private String name;
+	@Column(name="SALARY")
+	private double salary;
+	@Column(name="DEPT_ID")
+	private int deptId;
+	
+	@ManyToOne(fetch=FetchType.EAGER)
+	@JoinColumn(name="DEPT_ID",insertable=false, updatable=false)
+	private Department dept;
+	
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public double getSalary() {
+		return salary;
+	}
+
+	public void setSalary(double salary) {
+		this.salary = salary;
+	}
+	
+	
+	
+	
+	
+	public Department getDept() {
+		return dept;
+	}
+
+	public void setDept(Department dept) {
+		this.dept = dept;
+	}
+
+	public void print() {
+		System.out.println("\nEmp Id:"+getId());
+		System.out.println("Emp Name:"+getName());
+		System.out.println("Emp Salary:"+getSalary());
+		System.out.println("Dept Id:"+getDept().getId());
+	}
+	
+	public String toString() {
+		return "\nEmp Id:"+getId()+
+				"\nEmp Name:"+getName()+
+				"\nEmp Salary:"+getSalary()+
+				"\nDept Id:"+getDept().getId();
+	}
+
+}

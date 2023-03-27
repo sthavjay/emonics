@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">&#x0A;<refactoring comment="Delete resource &apos;ReadMyBooks-Backend&apos;" deleteContents="false" description="Delete resource &apos;ReadMyBooks-Backend&apos;" element1="/ReadMyBooks-Backend" flags="7" id="org.eclipse.ltk.core.refactoring.delete.resources" resources="1" stamp="1678735096338"/>&#x0A;<refactoring comment="Delete resource &apos;readmybooks&apos;" deleteContents="false" description="Delete resource &apos;readmybooks&apos;" element1="/readmybooks" flags="7" id="org.eclipse.ltk.core.refactoring.delete.resources" resources="1" stamp="1678735389895"/>
+</session>

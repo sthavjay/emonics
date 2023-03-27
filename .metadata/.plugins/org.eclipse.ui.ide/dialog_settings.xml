@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="NewWizardAction">
+		<item key="NewWizardSelectionPage.STORE_SELECTED_ID" value="org.eclipse.jdt.ui.wizards.JavaProjectWizard"/>
+		<list key="NewWizardSelectionPage.STORE_EXPANDED_CATEGORIES_ID">
+		</list>
+	</section>
+	<section name="SmartImportWizard">
+		<item key="SmartImportRootWizardPage.STORE_HIDE_ALREADY_OPEN" value="false"/>
+		<item key="SmartImportRootWizardPage.STORE_CLOSE_IMPORTED" value="false"/>
+		<item key="SmartImportRootWizardPage.STORE_NESTED_PROJECTS" value="true"/>
+		<item key="SmartImportRootWizardPage.STORE_CONFIGURE_NATURES" value="true"/>
+		<list key="org.eclipse.ui.internal.wizards.datatransfer.SmartImportRootWizardPage.knownSources">
+			<item value="C:\Users\bijay\OneDrive\Desktop\emonics project\SpringBootSecurityJwt"/>
+			<item value="C:\Users\bijay\OneDrive\Desktop\emonics project\ReadMyBooks-BackEnd"/>
+			<item value="C:\Users\bijay\OneDrive\Desktop\emonics project\angular-readmybooks\readmybooks"/>
+			<item value="C:\Users\bijay\OneDrive\Desktop\emonics project\HelloSecurity"/>
+			<item value="C:\Users\bijay\OneDrive\Desktop\emonics project\ExampleTDD"/>
+			<item value="C:\Users\bijay\OneDrive\Desktop\emonics project\HumanResource-BackEnd-Insurance"/>
+			<item value="C:\Users\bijay\OneDrive\Desktop\emonics project\HumanResource-BackEnd"/>
+			<item value="C:\Users\bijay\OneDrive\Desktop\emonics project\HelloWord-SpringWeb"/>
+			<item value="C:\Users\bijay\OneDrive\Desktop\emonics project\EmployeeJPAWithMaven"/>
+			<item value="C:\Users\bijay\OneDrive\Desktop\emonics project\1stSpringExample"/>
+			<item value="C:\Users\bijay\OneDrive\Desktop\emonics project\JdbcTemplateExamplespring"/>
+			<item value="C:\Users\bijay\OneDrive\Desktop\emonics project\JdbcTemplateExample"/>
+			<item value="C:\Users\bijay\Documents\emonics1\Batch3-ClassWork\Java-EE\JdbcExample"/>
+			<item value="C:\Users\bijay\OneDrive\Desktop\jdbc-practice\EmployeeJPAExample"/>
+			<item value="C:\Users\bijay\OneDrive\Desktop\emonics project\EmployeeMgmt"/>
+			<item value="C:\Users\bijay\OneDrive\Desktop\emonics project\EmployeeMgmt-Backend"/>
+			<item value="C:\Users\bijay\Documents\emonics1\Batch3-ClassWork\Java-EE\EmployeeMgmt"/>
+			<item value="C:\Users\bijay\Documents\emonics1\Batch3-ClassWork\Java-EE\HelloWeb"/>
+			<item value="C:\Users\bijay\OneDrive\Desktop\jdbc-practice"/>
+		</list>
+	</section>
+	<section name="ResourceNavigator">
+		<item key="ResourceViewer.STORE_SORT_TYPE" value="1"/>
+		<item key="ResourceWorkingSetFilter.STORE_WORKING_SET" value="Aggregate for window 1608932121208"/>
+	</section>
+	<section name="CleanDialogSettings">
+		<item key="TOGGLE_SELECTED" value="false"/>
+		<item key="DIALOG_WIDTH" value="576"/>
+		<item key="DIALOG_HEIGHT" value="381"/>
+		<item key="DIALOG_FONT_NAME" value="1|Segoe UI|9.0|0|WINDOWS|1|-24|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI"/>
+	</section>
+</section>

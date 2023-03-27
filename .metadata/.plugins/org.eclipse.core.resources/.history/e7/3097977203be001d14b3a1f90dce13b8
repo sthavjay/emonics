@@ -1,0 +1,66 @@
+package emonics.hrm.Services;
+
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
+import emonics.hrm.dao.EmployeeRepo;
+import emonics.hrm.dao.InsuranceRepo;
+import emonics.hrm.entities.Employee;
+import emonics.hrm.entities.EmployeeInsurance;
+import emonics.hrm.util.Message;
+
+@Service
+public class HumanResourceService {
+
+	// (this repo is used for Restful layer because one service layer can handle  many repo. So no need of multiple repo.
+//	@Autowired
+//	private EmployeeRepo repo;
+//	@Autowired
+//	private InsuranceRepo insrepo;
+	
+
+	
+//	//@RequestMapping(method=RequestMethod.GET) is same as @getmapping of method.GET)
+//	@GetMapping("/find/{id}")
+	public Employee get(@PathVariable int id) {
+		Employee e=null;
+		return serv.findById(id);Employee e=null;
+		Optional<Employee> opt=repo.findById(id); // optional is a container where we can save employee object.
+		if(opt.isPresent()) { // here is the part where we check employee object is available or not in optional container.
+			e=opt.get();   // if available of object in opt container, run get method.
+		}else {
+			e=new Employee();
+		}
+		return e;
+	
+	// @PostMapping("add") 
+	public Message save(@RequestBody Employee e, EmployeeInsurance ins) { // Inrestful service, we cannot do more than one parameter. HOwever we can do more parameter in service layer.
+		Message m=new Message();
+		try {
+			repo.save(e);
+			
+			insrepo.save(ins);
+			m.setMsg("Employee "+e.getId() + " is addedd successfully");
+		}catch(Exception ex) {
+			m.setMsg("Error while adding Employee "+e.getId()+ ":"+ex.getMessage());
+		}
+		
+		return m;
+	}
+//	
+	@DeleteMapping("/delete/{id}")
+	public Employee delete(@PathVariable int id) {
+		Employee e=new Employee();
+		repo.deleteById(id);
+		return e;
+		
+	}
+}

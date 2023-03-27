@@ -1,0 +1,58 @@
+package emonics.hrm.web;
+
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import emonics.hrm.dao.EmployeeRepo;
+import emonics.hrm.entities.Employee;
+import emonics.hrm.util.Message;
+
+@RestController  @RequestMapping("/hrm")
+//@Controller @ResponseBody 
+public class EmployeeRS {
+//	@Autowired
+//	private EmployeeRepo repo;
+//	
+//	//@RequestMapping(method=RequestMethod.GET)
+//	@GetMapping("/find/{id}")
+//	public Employee get(@PathVariable int id) {
+//		Employee e=null;
+//		Optional<Employee> opt=repo.findById(id); // optional is a container where we can save employee object.
+//		if(opt.isPresent()) { // here is the part where we check employee object is available or not in optional container.
+//			e=opt.get();   // if available of object in opt container, run get method.
+//		}else {
+//			e=new Employee();
+//		}
+//		return e;
+//	}
+//	
+//	@PostMapping("add") 
+//	public Message save(@RequestBody Employee e) {
+//		Message m=new Message();
+//		try {
+//			repo.save(e);
+//			m.setMsg("Employee "+e.getId() + " is addedd successfully");
+//		}catch(Exception ex) {
+//			m.setMsg("Error while adding Employee "+e.getId()+ ":"+ex.getMessage());
+//		}
+//		
+//		return m;
+//	}
+////	
+//	@DeleteMapping("/delete/{id}")
+//	public Employee delete(@PathVariable int id) {
+//		Employee e=new Employee();
+//		repo.deleteById(id);
+//		return e;
+//		
+//	}
+}

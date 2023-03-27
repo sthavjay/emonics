@@ -1,0 +1,4 @@
+127.0.0.1 - - [23/Feb/2023:22:39:51 -0800] "GET / HTTP/1.1" 404 768
+0:0:0:0:0:0:0:1 - - [23/Feb/2023:22:39:55 -0800] "GET /EmployeeMgmt/EmployeeController HTTP/1.1" 405 768
+0:0:0:0:0:0:0:1 - - [23/Feb/2023:22:39:56 -0800] "GET /favicon.ico HTTP/1.1" 404 779
+0:0:0:0:0:0:0:1 - - [23/Feb/2023:22:40:26 -0800] "GET /EmployeeMgmt/WEB-INF/classes/emonics/hr/model/Employee.java HTTP/1.1" 404 699

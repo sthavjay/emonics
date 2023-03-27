@@ -1,0 +1,28 @@
+package com.example.service;
+
+import java.util.List;
+
+import org.hibernate.cache.spi.support.AbstractReadWriteAccess.Item;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.example.Repository.ItemRepository;
+
+@Service
+public class ItemService {
+	
+	@Autowired
+	private ItemRepository itemrepo;
+	
+	
+	
+	
+	public Item saveItem(Item item) {   //only 1 item
+		return itemrepo.save(item);
+	}
+	
+	public List <Item> saveItem(List<Item> item) {   //only 1 item
+		return itemrepo.saveAll(item);
+	}
+
+}

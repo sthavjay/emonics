@@ -1,0 +1,5 @@
+package emonics.hrm.entities;
+
+public class EmployeeInsurance {
+
+}

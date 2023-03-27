@@ -1,0 +1,29 @@
+package emonics.hr;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+
+import emonics.hr.dao.DbConnectionFactory;
+import emonics.hr.dao.EmployeeDao;
+import emonics.hr.model.Employee;
+
+public class Main {
+
+	public static void main(String[] args) {
+		EmployeeDao dao=DbConnectionFactory.get();
+		dao.findAll().forEach(e->System.out.println(e));
+		//Employee e=dao.findById(40);
+//		Employee e=new Employee(10, "Peter Parker", 43210.32, 101, 4);
+//		dao.save(e);
+//		System.out.println(e);
+		 Employee e2 = new Employee(10,"Chris","Jerico", 20000.00);
+		 dao.save(e2);
+		System.out.println(e2);
+	}
+
+}

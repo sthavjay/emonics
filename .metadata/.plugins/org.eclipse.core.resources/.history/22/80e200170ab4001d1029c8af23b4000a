@@ -1,0 +1,22 @@
+package com.all;
+import javax.ejb.EJB;
+
+import Beta;
+
+public class Alpha {
+	int id;
+	String name;
+	Beta fulladdress;
+	
+	@EJB
+	 Alpha alphaObject;
+	 Beta betaObject = new Beta();
+	 
+	 public static void main(String[] args) {
+	 
+ alphaObject.id= 1;
+ alphaObject.name = "Bijaya";
+ betaObject.fulladress.zc = 92801;
+ alphaObject.fulladdress.address = "Magnolia";
+	 }
+}

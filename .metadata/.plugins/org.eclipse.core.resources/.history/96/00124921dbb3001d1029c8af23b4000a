@@ -1,0 +1,8 @@
+
+public class Beta extends Alpha {
+	int zc;
+	String Address;
+	
+	
+}
+

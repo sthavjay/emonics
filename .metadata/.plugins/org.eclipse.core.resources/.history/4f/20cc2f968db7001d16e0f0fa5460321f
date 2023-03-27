@@ -1,0 +1,165 @@
+package emonics.hrapp;
+
+import java.util.Scanner;
+
+import emonics.hrapp.models.beans.Department;
+import emonics.hrapp.models.beans.Employee;
+import emonics.hrapp.service.EmployeeDao;
+import emonics.hrapp.service.HrException;
+
+import java.util.List;
+
+public class Main {
+
+	public static void main(String[] args) {
+		Scanner sc=new Scanner(System.in);
+		EmployeeDao dao=EmployeeDaoFactory.getEmployeeDao();
+	
+		//Employee e=findEmployee(dao,sc);
+//		if(e!=null) {
+//			System.out.println(e.toString());
+//		}else {
+//			System.out.println("no record found");
+//		}
+	/*	
+		Department d=findDepartment(dao,sc);
+		if(d!=null) {
+			//e.print();
+			System.out.println(d);
+			System.out.println("\nAll Employee in Department "+d.getName());
+			d.getEmpList().forEach(e->System.out.println(e+"\n"));
+		}else {
+				System.out.println("no record found");
+		}*/
+		//hqlqueries(dao,sc);
+		//insertEmployee(dao,sc);
+		//updateEmployee(dao,sc);
+		findAll(dao);
+		//deleteEmployee(dao,sc);
+		
+	}
+	
+	public static void findAll(EmployeeDao dao) {
+		try {
+			List<Employee> empDetails=dao.findAllUsinCQ();
+			empDetails.forEach(e-> e.print());
+		} catch (HrException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public static void hqlqueries(EmployeeDao dao, Scanner sc) {
+		System.out.print("Enter Dept Id:");
+		int id=sc.nextInt();
+		try {
+			
+			List<Employee> empDetails=dao.findEmployeeByDept(id);
+			empDetails.forEach(e-> e.print());
+		} catch (HrException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	public static void deleteEmployee(EmployeeDao dao, Scanner sc) {
+		try {
+			Employee e=findEmployee(dao,sc);
+			if(e!=null) {
+				if(dao.delete(e)) {
+					System.out.println("Employee Delete Successfully");
+				}else {
+					System.out.println("Something Went Wrong while deleting records");
+				}
+			}else {
+				System.out.println("no record found");			
+			}
+		}catch (HrException e) {
+			// TODO Auto-generated catch block
+			System.out.println(e.getMessage());
+		}
+	}
+	public static void updateEmployee(EmployeeDao dao, Scanner sc) {
+		try {
+			Employee e=findEmployee(dao,sc);
+			if(e!=null) {
+				System.out.print("Enter New Emp Name:");
+				//consume new line
+				sc.nextLine();
+				String name=sc.nextLine();
+				
+				System.out.print("Enter New Emp DeptId:[enter 0 not to change]");
+				int did=sc.nextInt();
+			
+				if(name.length()>1) {
+					
+					e.setName(name);
+				}
+				if(did==101 || did==102 || did==103) {
+					e.getDept().setId(did);
+				}
+				if(dao.update(e)) {
+					System.out.println("Update successful");
+				}else {
+					System.out.println("Something Went Wrong while update records");
+				}
+			}else {
+				System.out.println("no record found");			
+				}
+		}catch (HrException e) {
+			// TODO Auto-generated catch block
+			System.out.println(e.getMessage());
+		}
+	}
+	public static Employee findEmployee(EmployeeDao dao, Scanner sc) {
+		Employee e=null;
+		System.out.print("Enter Emp Id:");
+		int id=sc.nextInt();
+		try {
+			e=dao.findById(id);
+			
+		} catch (HrException ex) {
+			// TODO Auto-generated catch block
+			System.out.println(ex.getMessage());
+		}
+		return e;
+	}
+	
+	public static Department findDepartment(EmployeeDao dao, Scanner sc) {
+		Department d=null;
+		System.out.print("Enter Dept Id:");
+		int id=sc.nextInt();
+		try {
+			d=dao.findDeptById(id);
+			
+		} catch (HrException ex) {
+			// TODO Auto-generated catch block
+			System.out.println(ex.getMessage());
+		}
+		return d;
+	}
+	public static void insertEmployee(EmployeeDao dao, Scanner sc) {
+		System.out.print("Enter Emp Id:");
+		int id=sc.nextInt();
+		System.out.print("Enter Emp Name:");
+		String name=sc.next();
+		System.out.print("Enter Emp Salary:");
+		double s=sc.nextDouble();
+		System.out.print("Enter Emp DeptId:");
+		int did=sc.nextInt();
+		Employee e=new Employee();
+		e.setId(id);
+		e.setName(name);
+		e.setSalary(s);
+		//e.setDeptId(did);
+		try {
+			if(dao.insert(e)) {
+				System.out.println("Employee insert success");
+			}else {
+				System.out.println("Something went wrong");
+			}
+		} catch (HrException e1) {
+			System.out.println(e1.getMessage());
+		}
+	}
+
+}

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy element &apos;Role.java&apos; to &apos;ProjectClothes/src/main/java/com.example.entities&apos;&#x0D;&#x0A;- Original project: &apos;SpringBootSecurityJwt&apos;&#x0D;&#x0A;- Destination element: &apos;ProjectClothes/src/main/java/com.example.entities&apos;&#x0D;&#x0A;- Original element: &apos;com.demo.models.Role.java&apos;" description="Copy compilation unit" destination="=ProjectClothes/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.example.entities" element1="/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.demo.models{Role.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1679259492325" units="1" version="1.0"/>
+</session>

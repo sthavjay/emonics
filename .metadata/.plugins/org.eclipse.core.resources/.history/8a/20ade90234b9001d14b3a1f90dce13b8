@@ -1,0 +1,8 @@
+spring.datasource.url=jdbc:mysql://localhost:3306/employee
+spring.datasource.username=root
+spring.datasource.password=Trishna@123
+spring.jpa.hibernate.ddl-auto=none
+server.port=5000
+spring.datasource.driverClassName=com.mysql.jdbc.Driver
+#logging.level.org.springframework.context=DEBUG
+#debug: true

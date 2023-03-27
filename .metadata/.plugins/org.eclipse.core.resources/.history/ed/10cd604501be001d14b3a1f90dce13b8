@@ -1,0 +1,5 @@
+package emonics.hrm.Services;
+
+public class HumanService {
+
+}

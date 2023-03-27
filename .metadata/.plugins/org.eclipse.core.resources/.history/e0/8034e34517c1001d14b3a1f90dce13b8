@@ -1,0 +1,12 @@
+package com.example.entities;
+
+
+public class Items {
+	private Clothes collection;
+	private float price;
+	private int quantity;
+	private float tax;
+	private float TotalPrice;
+	
+	
+}

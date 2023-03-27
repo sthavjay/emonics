@@ -1,0 +1,39 @@
+
+
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.AbstractApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import com.example.pojos.Address;
+import com.example.pojos.Employee;
+import com.example.pojos.Manager;
+
+
+public class Main {
+
+	public static void main(String[] args) {
+		AbstractApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
+	
+	     Employee e1=(Employee) context.getBean("emp");
+	     Employee e2=(Employee) context.getBean("emp");
+	     Manager m1=(Manager) context.getBean("mgr");
+	     e1.setId(1);
+	     e1.setName("Bijaya");
+	     e1.setSalary(1000.00);
+	     e1.getAddress().setCity("CA");
+	     e1.getAddress().setLine1("12 Cross");
+	     System.out.println(e1);
+	     System.out.println(e2);
+	     e2.setName("Ola");
+	     m1.setId(2);
+	     m1.setName("Bijaya");
+	     m1.setSalary(1200.00);
+	     m1.getAddress().setCity("CA");
+	     m1.getAddress().setLine1("12 Cross");
+	     m1.setDeptName("HR");
+	     System.out.println(m1);
+	     //context.registerShutdownHook();
+	}
+
+}

@@ -1,0 +1,18 @@
+
+public class Alpha {
+	int id;
+	String name;
+	Beta fulladdress;
+	
+
+	 Alpha alphaObject = new Alpha();
+	 Beta betaObject = new Beta();
+	 
+	 public static void main(String[] args) {
+	 
+ alphaObject.id= 1;
+ alphaObject.name = "Bijaya";
+ betaObject.fulladress.zc = 92801;
+ alphaObject.fulladdress.address = "Magnolia";
+	 }
+}

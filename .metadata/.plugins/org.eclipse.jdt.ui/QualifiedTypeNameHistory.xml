@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="mybill.items.Utility"/>
+    <fullyQualifiedTypeName name="mybill.items.Tent"/>
+    <fullyQualifiedTypeName name="mybill.utilities.Returnable"/>
+    <fullyQualifiedTypeName name="mybill.utilities.UtilityBuilder"/>
+    <fullyQualifiedTypeName name="Lamda.calculation.Calculator"/>
+    <fullyQualifiedTypeName name="java.util.Random"/>
+    <fullyQualifiedTypeName name="java.util.Arrays"/>
+    <fullyQualifiedTypeName name="java.io.FileReader"/>
+    <fullyQualifiedTypeName name="java.io.BufferedReader"/>
+    <fullyQualifiedTypeName name="java.io.IOException"/>
+</qualifiedTypeNameHistroy>
